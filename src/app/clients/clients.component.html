@@ -1,0 +1,165 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div
+            class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3"
+          >
+            <div class="row">
+              <div class="col-6 d-flex align-items-center">
+                <h6 class="text-white text-capitalize ps-3">Clients table</h6>
+              </div>
+              <div class="col-6 text-end pe-4 pb-1">
+                <a
+                  class="btn bg-gradient-success mb-0"
+                  (click)="openAddClientDialog()"
+                  ><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add
+                  New</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                  >
+                    client Id
+                  </th>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                  >
+                    client Name
+                  </th>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                  >
+                    address
+                  </th>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
+                  >
+                    phone Number
+                  </th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let client of getPageItems()">
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{
+                      client.clientId
+                    }}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{
+                      client.clientName
+                    }}</span>
+                  </td>
+                  <td class="align-middle text-start">
+                    <span class="text-secondary text-xs font-weight-bold">{{
+                      client.address
+                    }}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{
+                      client.phoneNumber
+                    }}</span>
+                  </td>
+                  <td class="align-middle text-end">
+                    <a
+                      class="btn btn-link text-dark mb-0 w-10"
+                      (click)="openEditClientDialog(client.clientId)"
+                      ><i
+                        class="material-icons text-dark cursor-pointer"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Edit"
+                        >edit</i
+                      ></a
+                    >
+                    <a
+                      class="btn btn-link text-danger text-gradient mb-0 w-10 me-2"
+                      (click)="openConfirmDialog(client.clientId)"
+                      ><i
+                        class="material-icons text-dark cursor-pointer"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Delete"
+                        >delete</i
+                      ></a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div>
+        <ul class="pagination">
+          <!-- Previous page button -->
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link btn" (click)="currentPage = currentPage - 1"
+              ><</a
+            >
+          </li>
+          <!-- Page numbers -->
+          <li
+            class="page-item"
+            *ngFor="let page of getPages()"
+            [class.active]="currentPage === page"
+          >
+            <a class="page-link btn" (click)="currentPage = page">{{ page }}</a>
+          </li>
+          <!-- Next page button -->
+          <li
+            class="page-item"
+            [class.disabled]="currentPage === getTotalPages()"
+          >
+            <a class="page-link btn" (click)="currentPage = currentPage + 1"
+              >></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer class="footer py-4">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-lg-between">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+          <div class="copyright text-center text-sm text-muted text-lg-start">
+            ©Copyright, made with <i class="fa fa-heart"></i> by HiViKa - CĐ
+            TKPM.
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <ul
+            class="nav nav-footer justify-content-center justify-content-lg-end"
+          >
+            <li class="nav-item">
+              <a href="" class="nav-link text-muted" target="_blank"
+                >About Us</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link text-muted" target="_blank">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link pe-0 text-muted" target="_blank"
+                >License</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

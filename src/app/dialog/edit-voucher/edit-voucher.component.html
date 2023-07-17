@@ -1,0 +1,109 @@
+<div class="card card-user">
+  <div class="card-header">
+    <h5 class="card-title">Edit Voucher</h5>
+  </div>
+  <form [formGroup]="formdata" (ngSubmit)="saveData(formdata.value)">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Voucher Name(*)</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Voucher Name"
+              formControlName="name"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>User ID</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="{{ formdata.value.userId }}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 pe-1">
+          <div class="form-group">
+            <label>Voucher Code(*)</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your voucher code"
+              formControlName="code"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 ps-1">
+          <div class="form-group">
+            <label>Voucher discount</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your voucher discount"
+              value="{{ formdata.value.discount }}"
+              disabled=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Game</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="{{ game.name }}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="update mx-auto text-end">
+          <button class="btn btn-primary btn-round" type="submit">Edit</button>
+          <a
+            class="btn alert-secondary btn-round text-white ms-sm-2"
+            (click)="closeDialog()"
+            >Cancel</a
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="position-fixed bottom-1 end-1 z-index-2">
+    <div
+      class="toast fade hide p-2 mt-2 bg-white"
+      role="alert"
+      aria-live="assertive"
+      [ngClass]="{ show: alertMessage !== '' }"
+    >
+      <div class="toast-header border-0">
+        <i class="material-icons text-danger me-2">campaign</i>
+        <span class="me-auto text-gradient text-danger font-weight-bold"
+          >Warning Message</span
+        >
+        <i
+          class="fas fa-times text-md ms-3 cursor-pointer"
+          (click)="alertMessage = ''"
+          aria-label="Close"
+        ></i>
+      </div>
+      <hr class="horizontal dark m-0" />
+      <div class="toast-body">
+        {{ alertMessage }}
+      </div>
+    </div>
+  </div>
+</div>
